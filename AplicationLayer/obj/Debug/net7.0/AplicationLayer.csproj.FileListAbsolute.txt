@@ -1,0 +1,15 @@
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\bin\Debug\net7.0\AplicationLayer.deps.json
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\bin\Debug\net7.0\AplicationLayer.dll
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\bin\Debug\net7.0\AplicationLayer.pdb
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\bin\Debug\net7.0\DomainLayer.dll
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\bin\Debug\net7.0\DomainLayer.pdb
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\AplicationLayer.csproj.AssemblyReference.cache
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\AplicationLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\AplicationLayer.AssemblyInfoInputs.cache
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\AplicationLayer.AssemblyInfo.cs
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\AplicationLayer.csproj.CoreCompileInputs.cache
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\AplicationLayer.csproj.CopyComplete
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\AplicationLayer.dll
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\refint\AplicationLayer.dll
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\AplicationLayer.pdb
+C:\Users\solaymani.m\source\repos\WebApplication7\AplicationLayer\obj\Debug\net7.0\ref\AplicationLayer.dll
