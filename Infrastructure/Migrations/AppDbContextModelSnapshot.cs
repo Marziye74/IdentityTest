@@ -61,17 +61,27 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("ChangeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Shops");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Shop");
                 });
 
             modelBuilder.Entity("DomainLayer.Entities.User", b =>
@@ -248,6 +258,17 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DomainLayer.Entities.Shop", b =>
+                {
+                    b.HasOne("DomainLayer.Entities.User", "User")
+                        .WithMany("shops")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("DomainLayer.Entities.UserRole", b =>
                 {
                     b.HasOne("DomainLayer.Entities.Role", "Role")
@@ -259,7 +280,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("DomainLayer.Entities.User", "User")
                         .WithMany("UserRole")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Role");
@@ -311,6 +332,8 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("DomainLayer.Entities.User", b =>
                 {
                     b.Navigation("UserRole");
+
+                    b.Navigation("shops");
                 });
 #pragma warning restore 612, 618
         }

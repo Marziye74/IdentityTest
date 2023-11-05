@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace AplicationLayer.Validation
 {
-    public class AddUserValidation : AbstractValidator<RegisterUserCommandRequest>
+    public class RegisterUserValidation : AbstractValidator<RegisterUserCommandRequest>
     {
-        public AddUserValidation()
+        public RegisterUserValidation()
         {
             RuleFor(u => u.UserName)
                 .NotNull()

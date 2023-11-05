@@ -13,6 +13,7 @@ namespace Infrastructure.Context
         public AppDbContext(DbContextOptions<AppDbContext> options) 
             : base(options)
         {
+
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -22,6 +23,7 @@ namespace Infrastructure.Context
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
+            builder.ApplyConfiguration(new ShopConfiguration());
         }
     }
 }

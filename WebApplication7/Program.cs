@@ -12,6 +12,7 @@ using AplicationLayer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Infrastructure.Repository;
 
 namespace WebApplication7
 {
@@ -40,10 +41,12 @@ namespace WebApplication7
                 .AddDefaultTokenProviders(); 
             builder.Services.AddTransient(typeof(IUnitOfWork), typeof(UnitOfWork));
             builder.Services.AddTransient(typeof(ILoginService), typeof(LoginService));
+            builder.Services.AddTransient(typeof(IShopRepository), typeof(ShopRepository));
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddValidatorsFromAssemblyContaining<Appliction>();
             builder.Services.AddSingleton(appSetting.JwtSettings);
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddAuthentication(option =>

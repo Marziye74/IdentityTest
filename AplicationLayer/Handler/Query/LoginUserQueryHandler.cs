@@ -33,7 +33,15 @@ namespace AplicationLayer.Handler.Query
                 };
             }
 
-            return _loginService.GenerateTokenQuery(request, cancellationToken);
+            return _loginService.GenerateToken(new GenerateToken
+            {
+                Name = request.UserName,
+                Password = request.Password,
+                UserId = user.Id,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
+
+            }, cancellationToken);
         }
     }
 }

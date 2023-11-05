@@ -20,33 +20,47 @@ namespace AplicationLayer.Handler.Command
 
         public async Task<Result> Handle(RegisterUserCommandRequest request, CancellationToken cancellationToken)
         {
-            
-                var currentEmail = await _userManager.FindByEmailAsync(request.Email);
-                var currentUserName = await _userManager.FindByNameAsync(request.UserName);
 
-                if (currentEmail == null && currentUserName == null)
+            var currentEmail = await _userManager.FindByEmailAsync(request.Email);
+            var currentUserName = await _userManager.FindByNameAsync(request.UserName);
+
+            if (currentEmail == null && currentUserName == null)
+            {
+                var newUser = new User
                 {
-                    var newUser = new User
+                    UserName = request.UserName,
+                    Email = request.Email,
+                    ConcurrencyStamp = Guid.NewGuid().ToString(),
+                    PhoneNumber = request.PhoneNumber,
+                    NormalizedEmail = string.Empty,
+                    NormalizedUserName = request.UserName.ToUpper(),
+                };
+
+                var result = await _userManager.CreateAsync(newUser, request.PasswordHash);
+                if (!result.Succeeded)
+                {
+                    return new Result
                     {
-                        UserName = request.UserName,
-                        Email = request.Email,
-                        ConcurrencyStamp = Guid.NewGuid().ToString(),
-                        PhoneNumber = request.PhoneNumber,
-                        NormalizedEmail = string.Empty,
-                        NormalizedUserName = request.UserName.ToUpper(),
+                        Data = null,
+                        Error = new string[] { "" },
+                        IsSuccess = false,
+                        StatusCode = HttpStatusCode.InternalServerError,
                     };
 
-                    var result = await _userManager.CreateAsync(newUser, request.PasswordHash);
-                    if (!result.Succeeded)
-                    {
-                        throw new Exception("User creation failed");
-                    }
-
-                    var getToken =  _loginService.GenerateTokenCommand(request, cancellationToken);
-
-                    return getToken;
-
                 }
+
+                var getToken = _loginService.GenerateToken(new GenerateToken
+                {
+                    Name = request.UserName,
+                    Email = request.Email,
+                    Password = request.PasswordHash,
+                    PhoneNumber = request.PhoneNumber,
+
+                }, cancellationToken);
+
+                return getToken;
+
+            }
 
             return new Result
             {
@@ -55,9 +69,6 @@ namespace AplicationLayer.Handler.Command
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.InternalServerError,
             };
-            
-           
-            
         }
     }
 }

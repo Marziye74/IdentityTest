@@ -1,12 +1,19 @@
 ﻿
 using AplicationLayer.Interfaces;
 using Infrastructure.Context;
+using Infrastructure.Repository;
 
 namespace Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _AppDbContext;
+        public IShopRepository ShopRepository { get; set; }
+        public UnitOfWork(AppDbContext appDbContext)
+        {
+            _AppDbContext = appDbContext;
+            ShopRepository = new ShopRepository(_AppDbContext);
+        }
 
         public void SaveChanges()
         {
@@ -30,7 +37,6 @@ namespace Infrastructure
                 }
             }
         }
-
         public async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
             using (var transaction = await _AppDbContext.Database.BeginTransactionAsync(cancellationToken))

@@ -1,6 +1,7 @@
 ﻿using AplicationLayer.Request.Command;
 using AplicationLayer.Request.Query;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication7.Controllers
@@ -14,14 +15,14 @@ namespace WebApplication7.Controllers
         }
 
         [HttpPost("RegisterUser")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterUserCommandRequest command, CancellationToken cancellationToken)
         {
             return Ok(await _mediator.Send(command, cancellationToken));
         }
 
         [HttpGet("LoginUser")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> LoginUser(LoginUserQueryRequest query, CancellationToken cancellationToken)
         {
             var resault = await _mediator.Send(query, cancellationToken);

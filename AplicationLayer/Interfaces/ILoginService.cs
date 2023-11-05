@@ -6,7 +6,7 @@ namespace AplicationLayer.Interfaces
 {
     public interface ILoginService
     {
-        Result GenerateTokenCommand(RegisterUserCommandRequest user, CancellationToken cancellationToken);
-        Result GenerateTokenQuery(LoginUserQueryRequest user, CancellationToken cancellationToken);
+        Result GenerateToken(GenerateToken user, CancellationToken cancellationToken);
+        
     }
 }
